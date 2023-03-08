@@ -86,6 +86,10 @@ def main(args):
     cfg.merge_from_file(model_zoo.get_config_file(args.cfg))
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
     cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(args.cfg)
+
+    if not torch.cuda.is_available():
+        cfg.MODEL.DEVICE = 'cpu'
+
     predictor = DefaultPredictor(cfg)
     
 
