@@ -123,6 +123,7 @@ def main(args):
                     bbox_tensor = np.concatenate((bbox_tensor, scores), axis=1)
             if has_bbox:
                 kps = outputs.pred_keypoints.numpy()
+                print(kps)
                 kps_xy = kps[:, :, :2]
                 kps_prob = kps[:, :, 2:3]
                 kps_logit = np.zeros_like(kps_prob) # Dummy
